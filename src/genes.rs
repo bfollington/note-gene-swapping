@@ -1,8 +1,8 @@
 use crate::util;
 use regex::Regex;
 
-type Gene = String;
-type Genome = Vec<Gene>;
+pub type Gene = String;
+pub type Genome = Vec<Gene>;
 
 pub fn extract_genes(input: &String) -> Vec<Gene> {
     let seperator = Regex::new(r"[\.\n]+").expect("Invalid regex");
@@ -13,7 +13,7 @@ pub fn extract_genes(input: &String) -> Vec<Gene> {
       .collect()
 }
 
-pub fn swap_random_gene(a: &mut Genome, b: &mut Genome) {
+pub fn swap_random_gene(a: &mut &mut Genome, b: &mut &mut Genome) {
     let index = util::random_index(a.len());
 
     let temp = a[index].clone();
@@ -21,24 +21,24 @@ pub fn swap_random_gene(a: &mut Genome, b: &mut Genome) {
     b[index] = temp;
 }
 
-pub fn share_random_gene(a: &mut Genome, b: &mut Genome) {
+pub fn share_random_gene(a: &mut &mut Genome, b: &mut &mut Genome) {
     let index = util::random_index(a.len());
     let temp = a[index].clone();
     b.insert(index, temp);
 }
 
-pub fn delete_random_gene(g: &mut Genome) {
+pub fn delete_random_gene(g: &mut &mut Genome) {
     let index = util::random_index(g.len());
     g.remove(index);
 }
 
-pub fn duplicate_random_gene(g: &mut Genome) {
+pub fn duplicate_random_gene(g: &mut &mut Genome) {
     let index = util::random_index(g.len());
     let temp = g[index].clone();
     g.insert(index, temp);
 }
 
-pub fn move_gene_location(g: &mut Genome) {
+pub fn move_gene_location(g: &mut &mut Genome) {
     let index = util::random_index(g.len());
     let destination = util::random_index(g.len());
     let temp = g[index].clone();

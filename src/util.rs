@@ -6,7 +6,7 @@ pub fn random_index(len: usize) -> usize {
     rng.gen_range(0..len)
 }
 
-pub fn choose(g: &Vec<String>) -> String {
+pub fn choose<T>(g: &Vec<T>) -> T where T : Clone {
     let index = random_index(g.len());
 
     g[index].clone()
