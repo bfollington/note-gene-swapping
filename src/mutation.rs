@@ -49,9 +49,9 @@ pub fn run_iteration(p: &mut Population) {
     ]);
     
     let count = p.len();
-    let indexA = util::random_index(count).max(1).min(count - 1);
-    println!("split at index {}, for pop {}", indexA, count);
-    let (a_ref, b_ref) = p.split_at_mut(indexA);
+    let index = util::random_index(count).max(1).min(count - 1);
+    println!("split at index {}, for pop {}", index, count);
+    let (a_ref, b_ref) = p.split_at_mut(index);
     let a = a_ref.first_mut().unwrap();
     let b = b_ref.first_mut().unwrap();
 
